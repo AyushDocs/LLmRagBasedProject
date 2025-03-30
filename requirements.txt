@@ -12,3 +12,6 @@ pillow
 pdfplumber
 scikit-learn
 dotenv
+yt-dlp
+ffmpeg-downloader
+

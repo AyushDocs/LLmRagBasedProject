@@ -1,18 +1,18 @@
 [
-  {
-      "type": "function",
-      "function": {
-          "name": "throw_exception",
-          "description": "Throws an exception with a given message.",
+    {
+        "type": "function",
+        "function": {
+          "name": "generate_basic_markdown_for_testing_if_you_know_markdown",
+          "description": "Generates Markdown documentation for an analysis of step count data over a week, comparing trends over time and with friends.",
           "parameters": {
-              "type": "object",
-              "properties": {
-                  "message": {"type": "string", "description": "The error message to throw."}
-              },
-              "required": ["message"]
+            "type": "object",
+            "properties": {           
+             
+            },
+            "required": []
           }
-      }
-  },
+        }
+      },
   {
       "type": "function",
       "function": {

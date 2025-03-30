@@ -11,9 +11,8 @@ TOOL_FUNCTION_MAPPER = {
     "run_command_with_npx": run_command_with_npx,
     "use_google_sheets": None,  # No implementation provided
     "use_excel": None,  # No implementation provided
-
     # ga2.json mappings
-    "throw_exception": None,  # No implementation provided
+    "generate_basic_markdown_for_testing_if_you_know_markdown": generate_basic_markdown_for_testing_if_you_know_markdown,  # No implementation provided
     "compress_image": compress_image,
     "deploy_github_pages": deploy_github_pages,
     "authenticate_colab": authenticate_colab,
@@ -22,10 +21,18 @@ TOOL_FUNCTION_MAPPER = {
     "create_github_action": create_github_action,
     "push_docker_image": push_docker_image,
     "get_student_data_using_fastapi": get_student_data_using_fastapi,
+    "sort_json_array":sort_json_array,
+
     "find_most_similar_phrases": highest_ebedding_similarrity_finder_using_cosine_similarity,
     "semantic_search_documents": sort_docs_by_embeddings,
     "map_query_to_function": None,  # No implementation provided
-    "bypass_llm_restriction": None,  # No implementation provided
+    "code_generator_for_sentiment_analysis": code_generator_for_sentiment_analysis,
+    "count_input_token_length_for_AI_request": count_input_token_length_for_AI_request,
+    "generate_random_addresses": generate_random_address,
+    "extract_text_from_image": text_extractor_from_image,
+    "find_most_similar_phrases": highest_ebedding_similarrity_finder_using_cosine_similarity,
+    "semantic_search_documents": sort_docs_by_embeddings,
+    "map_query_to_function": create_an_openai_function_tools_mapper,
 
     # ga4.json mappings
     "count_ducks_espn": count_ducks_espn,
@@ -38,7 +45,6 @@ TOOL_FUNCTION_MAPPER = {
     "create_github_action": create_github_action,
     "parse_student_marks": parse_student_marks,
     "pdf_to_markdown": pdf_to_markdown,
-
     # ga5.json mappings
     "total_margin_theta_sales": total_margin_theta,
     "count_unique_students": count_unique_students,

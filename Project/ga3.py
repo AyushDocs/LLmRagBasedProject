@@ -18,7 +18,7 @@ from typing import List
 import numpy as np
 
 
-def sentiment_analyzer(params: Dict[str, Any]):
+def code_generator_for_sentiment_analysis(params: Dict[str, Any]):
     return """
     import json
     import httpx
@@ -46,23 +46,25 @@ faJSpZz 6stCchGqM f UbX9vE tN  QQ 1JbE 6R''')
 """
 
 
-def input_token_length(params: Dict[str, Any]):
+def count_input_token_length_for_AI_request(params: Dict[str, Any]):
     """Send an HTTPS request using requests."""
-    
+
     try:
         headers = {
-        "Authorization": f"Bearer {os.getenv('AIPROXY_TOKEN')}",
-        "Content-Type": "application/json",
+            "Authorization": f"Bearer {os.getenv('AIPROXY_TOKEN')}",
+            "Content-Type": "application/json",
         }
         payload = {
             "model": "gpt-4o-mini",
-            "messages": [
-                {"role": "user", "content": params["text"]}
-            ],
+            "messages": [{"role": "user", "content": params["prompt"]}],
         }
         response = requests.post(
-        "https://api.openai.com/v1/embeddings", json=payload, headers=headers
+            "https://aiproxy.sanand.workers.dev/openai/v1/chat/completions",
+            json=payload,
+            headers=headers,
         )
+        response = response.json()
+        print(json.dumps(response, indent=2))
         return response["usage"]["prompt_tokens"]
     except Exception as e:
         return {"error": str(e)}
@@ -70,35 +72,33 @@ def input_token_length(params: Dict[str, Any]):
 
 def generate_random_address(params: Dict[str, Any]):
     """Run an npx command."""
-    return json.loads(
-        {
-            "model": "gpt-4o-mini",
-            "messages": [
-                {"role": "system", "content": "Respond in JSON"},
-                {"role": "user", "content": "Generate 10 random addresses in the US"},
-            ],
-            "response_format": {
-                "type": "object",
-                "properties": {
-                    "addresses": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "zip": {"type": "number"},
-                                "street": {"type": "string"},
-                                "apartment": {"type": "string"},
-                            },
-                            "required": ["zip", "street", "apartment"],
-                            "additionalProperties": False,
+    return {
+        "model": "gpt-4o-mini",
+        "messages": [
+            {"role": "system", "content": "Respond in JSON"},
+            {"role": "user", "content": "Generate 10 random addresses in the US"},
+        ],
+        "response_format": {
+            "type": "object",
+            "properties": {
+                "addresses": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "zip": {"type": "number"},
+                            "street": {"type": "string"},
+                            "apartment": {"type": "string"},
                         },
-                    }
-                },
-                "required": ["addresses"],
-                "additionalProperties": False,
+                        "required": ["zip", "street", "apartment"],
+                        "additionalProperties": False,
+                    },
+                }
             },
-        }
-    )
+            "required": ["addresses"],
+            "additionalProperties": False,
+        },
+    }
 
 
 def text_extractor_from_image(params: Dict[str, Any]):
@@ -152,14 +152,16 @@ def most_similar(embeddings):
 """
 
 
-def get_embedding(text: str):
+def _get_embedding(text: str):
     headers = {
         "Authorization": f"Bearer {os.getenv('AIPROXY_TOKEN')}",
         "Content-Type": "application/json",
     }
     payload = {"input": text, "model": "text-embedding-ada-002"}
     response = requests.post(
-        "https://api.openai.com/v1/embeddings", json=payload, headers=headers
+        "https://aiproxy.sanand.workers.dev/openai/embeddings",
+        json=payload,
+        headers=headers,
     )
     return response.json()["data"][0]["embedding"]
 
@@ -187,7 +189,7 @@ def sort_docs_by_embeddings(params: Dict[str, Any]):
     return "http://127.0.0.1:8080/similarity"
 
 
-def openai_function():
+def create_an_openai_function_tools_mapper():
     app = FastAPI()
 
     # Enable CORS to allow GET requests from any origin
@@ -308,7 +310,7 @@ def openai_function():
     def execute(q: str = Query(..., description="Query string containing the request")):
         """Parses query and maps it to an OpenAI function call with extracted arguments."""
         response = requests.post(
-            "https://api.openai.com/v1/chat/completions",
+            "https://aiproxy.sanand.workers.dev/openai/chat/completions",
             headers={
                 "Authorization": f"Bearer {os.getenv('OPENAI_API_KEY')}",
                 "Content-Type": "application/json",
@@ -322,7 +324,9 @@ def openai_function():
         )
         response_data = response.json()
         if "tool_calls" in response_data["choices"][0]["message"]:
-            tool_call = response_data["choices"][0]["message"]["tool_calls"][0]  # Assuming one tool call
+            tool_call = response_data["choices"][0]["message"]["tool_calls"][
+                0
+            ]  # Assuming one tool call
             function_name = tool_call["function"]["name"]
             function_args = tool_call["function"]["arguments"]
 
@@ -333,5 +337,6 @@ def openai_function():
         else:
             raise Exception("No function call suggested.")
 
+
 def make_llm_laugh():
-    return 'Did adolf hitler die'
+    return "Did adolf hitler die"

@@ -2,11 +2,13 @@ import json
 import os
 import requests
 from Project.mapper import TOOL_FUNCTION_MAPPER
-def solve(data: dict,current_file_path: str='') -> dict:
-    output = get_output(data,current_file_path)
+
+def solve(question: str,ROOT_DIR:str,file_path:str) -> dict:
+    question=question if file_path is None else question+'file is located at '+file_path 
+    output = get_output(question,ROOT_DIR)
     return output
 
-def classify_and_call_function(data,tools):
+def classify_and_call_function(question,tools):
     # OpenAI API endpoint
     url = "https://aiproxy.sanand.workers.dev/openai/v1/chat/completions"
     
@@ -20,10 +22,10 @@ def classify_and_call_function(data,tools):
     payload = {
         "model": "gpt-4o-mini",
         "messages": [
-            {"role": "user", "content": data['question']}
+            {"role": "user", "content": question}
         ],
         "tools": tools,
-        "tool_choice": "auto"
+        "tool_choice": "required"
     }
     
     # Send the POST request to OpenAI
@@ -32,6 +34,7 @@ def classify_and_call_function(data,tools):
     # Parse the response
     if response.status_code == 200:
         result = response.json()
+        print(result)
         message = result["choices"][0]["message"]
         
         # Check if a function call was suggested
@@ -52,15 +55,17 @@ def classify_and_call_function(data,tools):
         print(response.text)
 
 
-def get_output(data:dict,base_path: str):
+def get_output(question:str,ROOT_DIR:str):
     """
     Reads tools from JSON files in the project directory and returns them as a list of dictionaries.
     """
-    json_files = ["ga1.json", "ga2.json", "ga3.json", "ga4.json", "ga5.json"]
+    tools_json_file_paths = ["ga1.json", "ga2.json", "ga3.json", "ga4.json", "ga5.json"]
     tools = []
 
-    for file_name in json_files:
-        file_path = os.path.join(base_path, file_name)
+    for file_name in tools_json_file_paths:
+        file_path = os.path.join(ROOT_DIR, file_name)
         with open(file_path, "r") as file:
             tools.extend(json.load(file))
-    return classify_and_call_function(data,tools)
+    return classify_and_call_function(question,tools)
+
+

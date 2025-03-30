@@ -78,5 +78,34 @@
         "required": ["formula"]
       }
     }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "sort_json_array",
+      "description": "Sorts a JSON array of objects by specified fields in ascending order. In case of ties, it sorts by the next field.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "json_array": {
+            "type": "array",
+            "description": "The JSON array of objects to sort.",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          },
+          "sort_fields": {
+            "type": "array",
+            "description": "List of field names to sort by in order of priority.",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["json_array", "sort_fields"]
+      }
+    }
   }
+  
 ]

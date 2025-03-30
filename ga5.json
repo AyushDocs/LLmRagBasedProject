@@ -7,9 +7,19 @@
       "parameters": {
         "type": "object",
         "properties": {
-          "file_path": { "type": "string", "description": "Path to the Sales Excel file." },
-          "cutoff_date": { "type": "string", "description": "Transactions before this date are considered (format: YYYY-MM-DD HH:MM:SS)." },
-          "country_variants": { "type": "array", "items": { "type": "string" }, "description": "Possible spellings of 'India'." }
+          "file_path": {
+            "type": "string",
+            "description": "Path to the Sales Excel file."
+          },
+          "cutoff_date": {
+            "type": "string",
+            "description": "Transactions before this date are considered (format: YYYY-MM-DD HH:MM:SS)."
+          },
+          "country_variants": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Possible spellings of 'India'."
+          }
         },
         "required": ["file_path", "cutoff_date", "country_variants"]
       }
@@ -23,7 +33,10 @@
       "parameters": {
         "type": "object",
         "properties": {
-          "file_path": { "type": "string", "description": "Path to the student records text file." }
+          "file_path": {
+            "type": "string",
+            "description": "Path to the student records text file."
+          }
         },
         "required": ["file_path"]
       }
@@ -37,7 +50,10 @@
       "parameters": {
         "type": "object",
         "properties": {
-          "file_path": { "type": "string", "description": "Path to the GZipped Apache log file." }
+          "file_path": {
+            "type": "string",
+            "description": "Path to the GZipped Apache log file."
+          }
         },
         "required": ["file_path"]
       }
@@ -51,7 +67,10 @@
       "parameters": {
         "type": "object",
         "properties": {
-          "file_path": { "type": "string", "description": "Path to the GZipped Apache log file." }
+          "file_path": {
+            "type": "string",
+            "description": "Path to the GZipped Apache log file."
+          }
         },
         "required": ["file_path"]
       }
@@ -65,7 +84,10 @@
       "parameters": {
         "type": "object",
         "properties": {
-          "file_path": { "type": "string", "description": "Path to the Sales dataset file." }
+          "file_path": {
+            "type": "string",
+            "description": "Path to the Sales dataset file."
+          }
         },
         "required": ["file_path"]
       }
@@ -79,7 +101,10 @@
       "parameters": {
         "type": "object",
         "properties": {
-          "file_path": { "type": "string", "description": "Path to the JSON sales data file." }
+          "file_path": {
+            "type": "string",
+            "description": "Path to the JSON sales data file."
+          }
         },
         "required": ["file_path"]
       }
@@ -89,11 +114,14 @@
     "type": "function",
     "function": {
       "name": "count_key_occurrences",
-      "description": "Count the occurrences of a specific key 'J' in a large, nested JSON log file.",
+      "description": "Count the occurrences of a specific key 'J' in a large, nested JSON log file which isn;t properly written.",
       "parameters": {
         "type": "object",
         "properties": {
-          "file_path": { "type": "string", "description": "Path to the JSON log file." }
+          "file_path": {
+            "type": "string",
+            "description": "Path to the JSON log file."
+          }
         },
         "required": ["file_path"]
       }
@@ -107,8 +135,14 @@
       "parameters": {
         "type": "object",
         "properties": {
-          "database_path": { "type": "string", "description": "Path to the DuckDB database file." },
-          "min_timestamp": { "type": "string", "description": "Minimum timestamp for filtering posts (ISO 8601 format)." }
+          "database_path": {
+            "type": "string",
+            "description": "Path to the DuckDB database file."
+          },
+          "min_timestamp": {
+            "type": "string",
+            "description": "Minimum timestamp for filtering posts (ISO 8601 format)."
+          }
         },
         "required": ["database_path", "min_timestamp"]
       }
@@ -122,9 +156,18 @@
       "parameters": {
         "type": "object",
         "properties": {
-          "video_url": { "type": "string", "description": "URL of the YouTube video." },
-          "start_time": { "type": "number", "description": "Start time of the segment in seconds." },
-          "end_time": { "type": "number", "description": "End time of the segment in seconds." }
+          "youtube_url": {
+            "type": "string",
+            "description": "URL of the YouTube video."
+          },
+          "start_time": {
+            "type": "number",
+            "description": "Start time of the segment in seconds."
+          },
+          "end_time": {
+            "type": "number",
+            "description": "End time of the segment in seconds."
+          }
         },
         "required": ["video_url", "start_time", "end_time"]
       }
@@ -138,8 +181,41 @@
       "parameters": {
         "type": "object",
         "properties": {
-          "image_path": { "type": "string", "description": "Path to the scrambled image." },
-          "mapping_path": { "type": "string", "description": "Path to the mapping file specifying original positions." }
+          "image_path": {
+            "type": "string",
+            "description": "Path to the scrambled image."
+          },
+          "mapping_path": {
+            "type": "array",
+            "description": "Mapping details specifying original and scrambled positions.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "original_row": {
+                  "type": "integer",
+                  "description": "The original row position before scrambling."
+                },
+                "original_column": {
+                  "type": "integer",
+                  "description": "The original column position before scrambling."
+                },
+                "scrambled_row": {
+                  "type": "integer",
+                  "description": "The scrambled row position after transformation."
+                },
+                "scrambled_column": {
+                  "type": "integer",
+                  "description": "The scrambled column position after transformation."
+                }
+              },
+              "required": [
+                "original_row",
+                "original_column",
+                "scrambled_row",
+                "scrambled_column"
+              ]
+            }
+          }
         },
         "required": ["image_path", "mapping_path"]
       }
