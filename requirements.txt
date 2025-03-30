@@ -1,4 +1,14 @@
 flask
 flask-cors
-ipykernel
 uvicorn
+fastapi
+Markdown
+numpy
+uv
+requests
+beautifulsoup4
+pandas
+pillow
+pdfplumber
+scikit-learn
+dotenv

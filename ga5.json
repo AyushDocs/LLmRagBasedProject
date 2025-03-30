@@ -1,0 +1,148 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "total_margin_theta_sales",
+      "description": "Calculate the total margin for transactions before a given date for the product 'Theta' sold in India.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": { "type": "string", "description": "Path to the Sales Excel file." },
+          "cutoff_date": { "type": "string", "description": "Transactions before this date are considered (format: YYYY-MM-DD HH:MM:SS)." },
+          "country_variants": { "type": "array", "items": { "type": "string" }, "description": "Possible spellings of 'India'." }
+        },
+        "required": ["file_path", "cutoff_date", "country_variants"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "count_unique_students",
+      "description": "Count unique student IDs from a text file.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": { "type": "string", "description": "Path to the student records text file." }
+        },
+        "required": ["file_path"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "count_successful_malayalam_requests",
+      "description": "Count successful GET requests for '/malayalam/' pages on Wednesdays between 00:00 and 06:00.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": { "type": "string", "description": "Path to the GZipped Apache log file." }
+        },
+        "required": ["file_path"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "top_ip_hindimp3_downloads",
+      "description": "Find the IP address with the highest total downloaded bytes for '/hindimp3/' requests on 2024-05-23.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": { "type": "string", "description": "Path to the GZipped Apache log file." }
+        },
+        "required": ["file_path"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "count_pizza_sales_jakarta",
+      "description": "Calculate total units of Pizza sold in Jakarta for transactions with at least 85 units.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": { "type": "string", "description": "Path to the Sales dataset file." }
+        },
+        "required": ["file_path"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "calculate_total_sales",
+      "description": "Calculate the total sales from a JSON file containing 100 rows of sales data.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": { "type": "string", "description": "Path to the JSON sales data file." }
+        },
+        "required": ["file_path"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "count_key_occurrences",
+      "description": "Count the occurrences of a specific key 'J' in a large, nested JSON log file.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": { "type": "string", "description": "Path to the JSON log file." }
+        },
+        "required": ["file_path"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "filter_high_quality_posts",
+      "description": "Find post IDs after a given timestamp with at least one comment having 2 or more useful stars.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "database_path": { "type": "string", "description": "Path to the DuckDB database file." },
+          "min_timestamp": { "type": "string", "description": "Minimum timestamp for filtering posts (ISO 8601 format)." }
+        },
+        "required": ["database_path", "min_timestamp"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "transcribe_audio_segment",
+      "description": "Extract and transcribe a specific segment from a YouTube audiobook.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "video_url": { "type": "string", "description": "URL of the YouTube video." },
+          "start_time": { "type": "number", "description": "Start time of the segment in seconds." },
+          "end_time": { "type": "number", "description": "End time of the segment in seconds." }
+        },
+        "required": ["video_url", "start_time", "end_time"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "reconstruct_scrambled_image",
+      "description": "Reconstruct an image from its scrambled pieces using a mapping file.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "image_path": { "type": "string", "description": "Path to the scrambled image." },
+          "mapping_path": { "type": "string", "description": "Path to the mapping file specifying original positions." }
+        },
+        "required": ["image_path", "mapping_path"]
+      }
+    }
+  }
+]

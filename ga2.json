@@ -1,0 +1,127 @@
+[
+  {
+      "type": "function",
+      "function": {
+          "name": "throw_exception",
+          "description": "Throws an exception with a given message.",
+          "parameters": {
+              "type": "object",
+              "properties": {
+                  "message": {"type": "string", "description": "The error message to throw."}
+              },
+              "required": ["message"]
+          }
+      }
+  },
+  {
+      "type": "function",
+      "function": {
+          "name": "compress_image",
+          "description": "Compress an image losslessly.",
+          "parameters": {
+              "type": "object",
+              "properties": {
+                  "input_path": {"type": "string", "description": "Path to the input image."},
+                  "output_path": {"type": "string", "description": "Path to save the compressed image."}
+              },
+              "required": ["input_path", "output_path"]
+          }
+      }
+  },
+  {
+      "type": "function",
+      "function": {
+          "name": "deploy_github_pages",
+          "description": "Deploy a website to GitHub Pages.",
+          "parameters": {
+              "type": "object",
+              "properties": {
+                  "inp": {"type": "object", "description": "Input dictionary with repo details."}
+              },
+              "required": ["inp"]
+          }
+      }
+  },
+  {
+      "type": "function",
+      "function": {
+          "name": "authenticate_colab",
+          "description": "Authenticate a Google Colab session.",
+          "parameters": {
+              "type": "object",
+              "properties": {},
+              "required": []
+          }
+      }
+  },
+  {
+      "type": "function",
+      "function": {
+          "name": "count_light_pixels",
+          "description": "Count the number of light pixels in an image.",
+          "parameters": {
+              "type": "object",
+              "properties": {
+                  "file": {"type": "string", "description": "Path to the image file."}
+              },
+              "required": ["file"]
+          }
+      }
+  },
+  {
+      "type": "function",
+      "function": {
+          "name": "deploy_vercel",
+          "description": "Deploy an API to Vercel.",
+          "parameters": {
+              "type": "object",
+              "properties": {},
+              "required": []
+          }
+      }
+  },
+  {
+      "type": "function",
+      "function": {
+          "name": "create_github_action",
+          "description": "Create a GitHub Action in a repository.",
+          "parameters": {
+              "type": "object",
+              "properties": {
+                  "repo_path": {"type": "string", "description": "Path to the GitHub repository."},
+                  "email": {"type": "string", "description": "Email for tracking."}
+              },
+              "required": ["repo_path", "email"]
+          }
+      }
+  },
+  {
+      "type": "function",
+      "function": {
+          "name": "push_docker_image",
+          "description": "Push a Docker image to Docker Hub.",
+          "parameters": {
+              "type": "object",
+              "properties": {
+                  "image_name": {"type": "string", "description": "Name of the Docker image."},
+                  "tag": {"type": "string", "description": "Tag for the Docker image."}
+              },
+              "required": ["image_name", "tag"]
+          }
+      }
+  },
+  {
+      "type": "function",
+      "function": {
+          "name": "get_student_data_using_fastapi",
+          "description": "Start a FastAPI server to serve student data.",
+          "parameters": {
+              "type": "object",
+              "properties": {
+                  "file": {"type": "string", "description": "Path to the CSV file with student data."}
+              },
+              "required": ["file"]
+          }
+      }
+  }
+]

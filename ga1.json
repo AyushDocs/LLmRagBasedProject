@@ -1,0 +1,82 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "check_vs_code_version",
+      "description": "Check the version of Visual Studio Code installed.",
+      "parameters": {}
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "make_http_request_with_uv",
+      "description": "Send an HTTPS request using uv.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "The URL to send the request to."
+          },
+          "email": {
+            "type": "string",
+            "description": "The email parameter to include in the request."
+          }
+        },
+        "required": ["url", "email"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "run_command_with_npx",
+      "description": "Run a command using npx.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "command": {
+            "type": "string",
+            "description": "The command to run with npx."
+          }
+        },
+        "required": ["command"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "use_google_sheets",
+      "description": "Perform calculations using Google Sheets formulas.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "formula": {
+            "type": "string",
+            "description": "The formula to evaluate in Google Sheets."
+          }
+        },
+        "required": ["formula"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "use_excel",
+      "description": "Perform calculations using Excel formulas.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "formula": {
+            "type": "string",
+            "description": "The formula to evaluate in Excel."
+          }
+        },
+        "required": ["formula"]
+      }
+    }
+  }
+]
