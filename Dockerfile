@@ -14,6 +14,8 @@ RUN apt-get update && apt-get install -y curl && \
     npm install -g prettier && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get install -y ffmpeg
+
 # Install any needed Python packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
@@ -23,5 +25,4 @@ EXPOSE 5000
 # Define environment variable
 ENV PYTHONUNBUFFERED=1
 
-# Run the application
-CMD ["uvicorn", "server:app", "--host", "0.0.0.0", "--port", "5000"]
+CMD ["gunicorn", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "-b", "0.0.0.0:5000", "server:app"]
