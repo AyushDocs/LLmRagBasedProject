@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from Project.ProblemSolver import solve
 import os
 import dotenv
+import uvicorn
 
 # Load environment variables
 dotenv.load_dotenv()
@@ -57,4 +58,4 @@ def _file_has_been_uploaded(user_request):
     return "file" in user_request.files and user_request.files.get("file").filename != ""
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+   uvicorn.run(app, host="0.0.0.0", port=5000)
