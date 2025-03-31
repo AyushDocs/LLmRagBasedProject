@@ -14,7 +14,6 @@ RUN apt-get update && apt-get install -y curl && \
     npm install -g prettier && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get install -y ffmpeg
 
 # Install any needed Python packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
