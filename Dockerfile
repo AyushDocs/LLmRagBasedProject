@@ -18,10 +18,10 @@ RUN apt-get update && apt-get install -y curl && \
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Make port 5000 available to the world outside this container
-EXPOSE 80
+EXPOSE 5000
 
 # Define environment variable
 ENV PYTHONUNBUFFERED=1
 
 # Run the application
-CMD ["python", "server.py"]
+CMD ["python", "server.py", "--host=0.0.0.0", "--port=5000"]
