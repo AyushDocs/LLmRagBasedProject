@@ -13,6 +13,10 @@ if not os.path.exists(UPLOAD_DIR):
     os.makedirs(UPLOAD_DIR)
 ROOT_DIR = os.path.dirname(__file__)
 
+
+@app.route('/')
+def home():
+    return 'Hello World'
 @app.route('/api', methods=['POST'])
 def endpoint():
     question = request.form.get("question")
